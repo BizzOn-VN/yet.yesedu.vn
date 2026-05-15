@@ -3,7 +3,7 @@ var App = App || {};
 //---MAIN----
 $(function () {
     App.ValidForm.registerValidate();
-    
+    App.Site.getCurrentDate();
 
 });
 
@@ -44,8 +44,20 @@ App.Site = function(){
 
         }
     }
+
+	var getCurrentDate = function() {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        let today_format = mm + '/' + dd + '/' + yyyy;
+        
+        $('.current-date').val(today_format);
+    }
      return {
-        submitInfo:submitInfo
+        submitInfo:submitInfo,
+		 getCurrentDate:getCurrentDate
     }
 
 }();    
